@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+require "json"
+
+# Parse JSON into Ruby Hash
+filepath = "realtors.json"
+serialized_realtors = File.read(filepath)
+realtors = JSON.parse(serialized_realtors)
+
+# Create Seeds
+p "destroying realtors"
+p "-------------------"
+
+Realtor.delete_all
+
+p "realtors destroyed - creating realtors"
+p "--------------------------------------"
+
+realtors.each do |realtor|
+  Realtor.create(
+    name: realtor["name"],
+    city: realtor["city"],
+    latitude: realtor["lat"],
+    longitude: realtor["lng"],
+    paused: false
+  )
+end
