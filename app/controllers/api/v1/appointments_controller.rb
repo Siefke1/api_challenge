@@ -29,6 +29,10 @@ class Api::V1::AppointmentsController < ApplicationController
   end
 
   private
+   def json
+    JSON.parse(response.body)
+  end
+
 
   def appointment_params
     params.require(:appointment).permit(:address, :time, :lat, :lng, seller:{})

@@ -8,12 +8,12 @@ class Appointment < ApplicationRecord
   alias_attribute :lng, :longitude
 
   # validations
+  validates :lat, :lng, :address, :time, presence: true
   validate :validate_48_hour_rule
   validate :validate_if_weekday
   validate :validate_if_working_hour
   validate :has_realtor
   validate :check_attributes
-  validates :lat, :lng, :address, :time, presence: true
 
   # custom validation methods
   def validate_48_hour_rule
