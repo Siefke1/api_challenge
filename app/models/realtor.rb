@@ -1,4 +1,4 @@
 class Realtor < ApplicationRecord
-  geocoded_by :address
+  geocoded_by :city
   has_many :appointments
 end
