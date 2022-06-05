@@ -13,9 +13,15 @@ class Appointment < ApplicationRecord
   validate :validate_48_hour_rule
   validate :validate_if_weekday
   validate :validate_if_working_hour
-  validate :validate_if_appointment_crash
+  validate :validate_realtor_calendar
 
   # custom validation methods
+  def validate_realtor_calendar
+    if Appointment.exists? time: time
+      errors.add :time, 'Slot taken'
+    end
+  end
+
   def validate_48_hour_rule
     unless DateTime.parse(time) > DateTime.now + 2.days
       errors.add(:time, "Minimum 48h time between now and appointment")
@@ -31,22 +37,8 @@ class Appointment < ApplicationRecord
     errors.add(:time, "Time must be between 10:00 - 18:00") unless t.hour <= 18 && t.hour >= 10
   end
 
-  def validate_if_appointment_crash
-    errors.add(:time, "This timeslot is taken") if self.realtor.paused
-  end
-
   def has_realtor
     errors.clear
     errors.add(:base, :blank, message: "No realtor available") if self.realtor_id == nil
   end
-
-  # def check_attributes
-  #   self.attributes.each do |atr|
-  #     if atr == nil
-  #       # atr.errors.clear
-  #       # atr.errors.add(atr, "missing.")
-  #       raise Errors::NoRealtor
-  #     end
-  #   end
-  # end
 end

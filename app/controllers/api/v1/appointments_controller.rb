@@ -8,7 +8,7 @@ class Api::V1::AppointmentsController < ApplicationController
       lat: appointment_params[:lat],
       lng: appointment_params[:lng]
     )
-    # find fitting realtor
+    # find closest realtor
     @realtor = closest_realtor(appointment_params[:lat], appointment_params[:lng])
     # create instance of seller
     @seller = Seller.create!(
