@@ -14,7 +14,7 @@ RSpec.describe "Appointments", type: :request do
           "lat": 52.5019145,
           "lng": 13.4135005,
           "address": "Prinzessinnenstraße 26, 10969 Berlin",
-          "time": "08/06/2022 10:00",
+          "time": "13/06/2022 10:00",
           "seller": {
             "name": "Alexander Schmit",
             "phone": "+498005800550"
@@ -36,7 +36,7 @@ RSpec.describe "Appointments", type: :request do
     end
 
     it 'returns the appointment\'s time' do
-      expect(JSON.parse(response.body)['time']).to eq("08/06/2022 10:00")
+      expect(JSON.parse(response.body)['time']).to eq("13/06/2022 10:00")
     end
 
     it 'returns the appointment\'s seller\'s name' do

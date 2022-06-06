@@ -18,7 +18,6 @@ class Api::V1::AppointmentsController < ApplicationController
     # assign foreign keys
     @appointment.realtor = @realtor
     @appointment.seller = @seller
-
     # return appointment
     if @appointment.save!
       render json: @appointment, status: :created
