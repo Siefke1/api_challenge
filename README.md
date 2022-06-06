@@ -1,3 +1,4 @@
+<!--
 # README
 
 Ruby / Rails Version:
@@ -34,3 +35,4 @@ Questions:
   some more things and look forward to discussing it in person.
 
   L.
+  -->

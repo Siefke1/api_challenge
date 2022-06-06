@@ -23,15 +23,15 @@ class Api::V1::AppointmentsController < ApplicationController
     if @appointment.save!
       render json: @appointment, status: :created
     else
-      render_errors
+      render_appointment_errors
       Seller.last.delete
     end
 
     # rescue from exceptions
   rescue ActiveRecord::RecordInvalid
-    render_errors
+    render_appointment_errors
   rescue TypeError
-    render_errors
+    render_appointment_errors
   end
 
   private
@@ -44,7 +44,7 @@ class Api::V1::AppointmentsController < ApplicationController
     Realtor.near([lat, lng], 20, order: :distance).first
   end
 
-  def render_errors
+  def render_appointment_errors
     render json: @appointment.errors.messages, status: :unprocessable_entity
   end
 end
