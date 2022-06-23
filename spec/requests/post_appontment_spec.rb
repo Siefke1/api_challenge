@@ -141,7 +141,7 @@ RSpec.describe "Appointments", type: :request do
       @appointment = Appointment.new(
         lat: 52.5019145,
         lng: 13.4135005,
-        time: "20/06/2022 10:00"
+        time: "20/06/2023 10:00"
       )
 
       @appointment.seller = seller
